@@ -1,8 +1,12 @@
 {
   "version": 3,
   "file": "bundle.css",
-  "sources": [],
-  "sourcesContent": [],
+  "sources": [
+    "..\\src\\components\\alerts\\alerts.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\r\n// Import Core Modules \r\nimport {fly,slide} from 'svelte/transition';\r\nimport {flip} from 'svelte/animate';\r\n// Import Internal Modules\r\nimport {store} from './utils'; \r\nimport Alert from './alert.svelte';\r\n\r\n// @desc Contains array of alert\r\n// @example [{type,msg,id}]\r\nlet alerts = [];\r\n\r\n// subscribe to the store\r\nstore.subscribe(value=>{\r\n    alerts = [...value] ;\r\n})\r\n\r\n</script>\r\n\r\n{#if alerts.length > 0}\r\n  <div class=\"alerts\" tranition:slide>\r\n    {#each alerts as  item (item.id)}\r\n      <div animate:flip transition:fly={{x:20}} class={`alert alert-${item.type}`} >\r\n        <Alert {...item} />\r\n      </div>        \r\n    {/each}\r\n  </div>\r\n{/if}\r\n\r\n<style>\r\n.alerts{\r\n    position: fixed;\r\n    top: 20px;\r\n    right: 50px;\r\n}\r\n.alert{\r\n  margin: 10px;\r\n  width: 380px;\r\n  padding: 10px;\r\n  position: relative;\r\n}\r\n.alert-success{\r\n  background: rgb(171, 241, 100);\r\n  color: darkgreen;\r\n  border-radius: 5px;\r\n}\r\n.alert-danger{\r\n  background: rgb(250, 151, 151);\r\n  color:darkred;\r\n  border-radius: 5px;\r\n}\r\n.alert-info{\r\n  background: skyblue;\r\n  color: darkblue;\r\n  border-radius: 5px;\r\n}\r\n@media screen and (max-width:560px){\r\n  .alerts{\r\n    width: 90%;\r\n    margin: auto;\r\n    left:4%;\r\n  }\r\n  .alert{\r\n    width: 100%;\r\n    margin: 5px;\r\n  }\r\n}\r\n</style>"
+  ],
   "names": [],
-  "mappings": ""
+  "mappings": "AA8BA,qBAAO,CAAC,AACJ,QAAQ,CAAE,KAAK,CACf,GAAG,CAAE,IAAI,CACT,KAAK,CAAE,IAAI,AACf,CAAC,AACD,oBAAM,CAAC,AACL,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,KAAK,CACZ,OAAO,CAAE,IAAI,CACb,QAAQ,CAAE,QAAQ,AACpB,CAAC,AACD,4BAAc,CAAC,AACb,UAAU,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAC9B,KAAK,CAAE,SAAS,CAChB,aAAa,CAAE,GAAG,AACpB,CAAC,AACD,2BAAa,CAAC,AACZ,UAAU,CAAE,IAAI,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAC9B,MAAM,OAAO,CACb,aAAa,CAAE,GAAG,AACpB,CAAC,AACD,yBAAW,CAAC,AACV,UAAU,CAAE,OAAO,CACnB,KAAK,CAAE,QAAQ,CACf,aAAa,CAAE,GAAG,AACpB,CAAC,AACD,OAAO,MAAM,CAAC,GAAG,CAAC,WAAW,KAAK,CAAC,CAAC,AAClC,qBAAO,CAAC,AACN,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,IAAI,CACZ,KAAK,EAAE,AACT,CAAC,AACD,oBAAM,CAAC,AACL,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,GAAG,AACb,CAAC,AACH,CAAC"
 }
